@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#0b4f6c" />
+  <title>Conecta Comunidad — Demo</title>
+  <meta name="description" content="Demo municipal para registrar, gestionar y dar seguimiento a necesidades comunitarias." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="demo-bar"><span>DEMO INSTITUCIONAL</span><p>Todos los datos y personas son ficticios</p><button id="resetDemo">Reiniciar demo</button></div>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#dashboard" aria-label="Conecta Comunidad">
+        <span class="brand-mark"><i></i><i></i><i></i></span>
+        <span>Conecta<br><strong>Comunidad</strong></span>
+      </a>
+      <div class="context-card">
+        <div class="seal">AM</div>
+        <div><small>Alcaldía demo</small><strong>Santa Esperanza</strong></div>
+      </div>
+      <nav aria-label="Navegación principal">
+        <button data-view="dashboard" class="active"><span>⌂</span> Resumen</button>
+        <button data-view="solicitudes"><span>▤</span> Solicitudes <b id="navCount">8</b></button>
+        <button data-view="directivas"><span>♙</span> Directivas <b id="pendingCount">1</b></button>
+        <button data-view="mapa"><span>⌖</span> Mapa territorial</button>
+        <button data-view="estadisticas"><span>◫</span> Estadísticas</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <span class="sync-dot"></span><div><small>Datos de demostración</small><strong>Sesión local activa</strong></div>
+      </div>
+    </aside>
+
+    <main>
+      <header class="topbar">
+        <button class="menu-btn" id="menuBtn" aria-label="Abrir menú">☰</button>
+        <div class="role-switch">
+          <label for="roleSelect">Vista actual</label>
+          <select id="roleSelect">
+            <option value="municipal">Administrador municipal</option>
+            <option value="directiva">Directiva comunitaria</option>
+          </select>
+        </div>
+        <div class="top-actions"><button class="icon-btn" title="Notificaciones">●<span></span></button><div class="avatar">ML</div><div class="profile"><strong id="profileName">María López</strong><small id="profileRole">Administradora municipal</small></div></div>
+      </header>
+      <div id="app" class="content" aria-live="polite"></div>
+    </main>
+  </div>
+
+  <dialog id="requestDialog">
+    <form method="dialog" id="requestForm">
+      <div class="dialog-head"><div><small>Nueva gestión</small><h2>Registrar solicitud</h2></div><button value="cancel" class="close-btn" aria-label="Cerrar">×</button></div>
+      <div class="stepper"><span class="on">1</span><i></i><span>2</span><i></i><span>3</span><p>Información</p><p>Ubicación</p><p>Confirmación</p></div>
+      <div class="form-grid">
+        <label>Comunidad<select name="comunidad" required><option value="">Seleccione...</option><option>Las Flores</option><option>El Progreso</option></select></label>
+        <label>Categoría<select name="categoria" required><option>Reparación de calles</option><option>Alumbrado público</option><option>Limpieza y recolección</option><option>Drenajes y aguas lluvias</option><option>Mantenimiento de parques</option></select></label>
+        <label class="wide">Título<input name="titulo" required maxlength="80" placeholder="Ej. Bache profundo en calle principal"></label>
+        <label class="wide">Descripción<textarea name="descripcion" required rows="4" placeholder="Describa la necesidad, referencias y afectación a la comunidad..."></textarea></label>
+        <label>Urgencia<select name="urgencia"><option>Media</option><option>Alta</option><option>Baja</option></select></label>
+        <label>Ubicación<input name="ubicacion" value="13.6929, -89.2182" required></label>
+      </div>
+      <div class="upload-box"><span>＋</span><div><strong>Adjuntar evidencia fotográfica</strong><small>JPG, PNG o WebP · máximo 5 MB (opcional en esta demo)</small></div><input type="file" accept="image/jpeg,image/png,image/webp"></div>
+      <div class="dialog-actions"><button value="cancel" class="secondary">Cancelar</button><button type="submit" value="default" class="primary">Registrar solicitud →</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="detailDialog"><div id="detailContent"></div></dialog>
+  <div id="toast" class="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
